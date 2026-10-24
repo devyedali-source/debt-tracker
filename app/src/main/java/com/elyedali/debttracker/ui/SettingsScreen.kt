@@ -24,6 +24,7 @@ import androidx.compose.material.icons.filled.CardMembership
 import androidx.compose.material.icons.filled.CurrencyExchange
 import androidx.compose.material.icons.filled.Fingerprint
 import androidx.compose.material.icons.filled.PictureAsPdf
+import androidx.compose.material.icons.filled.PrivacyTip
 import androidx.compose.material.icons.filled.Restore
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Star
@@ -56,6 +57,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.elyedali.debttracker.BuildConfig
+import com.elyedali.debttracker.ads.AdsManager
+import com.elyedali.debttracker.util.findActivity
 import com.elyedali.debttracker.billing.BillingManager
 import com.elyedali.debttracker.data.LedgerData
 import com.elyedali.debttracker.util.Share
@@ -140,6 +143,11 @@ fun SettingsScreen(vm: AppViewModel) {
                         )
                     }
                 }
+                if (!premium && AdsManager.privacyOptionsRequired(context)) {
+                    SettingRow(Icons.Filled.PrivacyTip, "Privacy options", "Manage your ad choices") {
+                        context.findActivity()?.let { AdsManager.showPrivacyOptions(it) }
+                    }
+                }
                 SettingRow(Icons.Filled.Star, "Rate Debt Tracker", "It helps a lot!") {
                     Share.openUrl(context, Share.STORE_URL)
                 }
@@ -216,8 +224,8 @@ private fun PlanCard(premium: Boolean, price: String?, onUpgrade: () -> Unit) {
                 )
                 Text(
                     if (premium) "Thank you for your support!"
-                    else if (price != null) "Unlimited people, PDF, lock and backup for $price/month"
-                    else "Unlimited people, PDF, lock and backup",
+                    else if (price != null) "No ads, unlimited people, PDF, lock and backup for $price/month"
+                    else "No ads, unlimited people, PDF, lock and backup",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onPrimaryContainer,
                 )

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -39,6 +40,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.elyedali.debttracker.ads.AdBanner
 
 @Composable
 fun AppRoot(vm: AppViewModel) {
@@ -83,6 +85,7 @@ fun HomeScreen(vm: AppViewModel) {
                 },
             )
         },
+        bottomBar = { AdBanner(premium, Modifier.navigationBarsPadding()) },
         floatingActionButton = {
             ExtendedFloatingActionButton(
                 onClick = { if (vm.canAddPerson()) showAdd = true else vm.navigate(Screen.Paywall) },

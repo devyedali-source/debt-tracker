@@ -19,6 +19,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Backup
+import androidx.compose.material.icons.filled.Block
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Fingerprint
 import androidx.compose.material.icons.filled.Groups
@@ -99,6 +100,7 @@ fun PaywallScreen(vm: AppViewModel) {
                 textAlign = TextAlign.Center,
             )
             Spacer(Modifier.height(24.dp))
+            Benefit(Icons.Filled.Block, "No ads", "A clean app with no banners or pop-up ads")
             Benefit(Icons.Filled.Groups, "Unlimited people", "The free plan is limited to $FREE_PERSON_LIMIT people")
             Benefit(Icons.Filled.PictureAsPdf, "PDF statements", "Share a clean statement with anyone")
             Benefit(Icons.Filled.Fingerprint, "App lock", "Protect your records with your fingerprint")

@@ -13,6 +13,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
+import com.elyedali.debttracker.ads.AdsManager
 import com.elyedali.debttracker.ui.AppRoot
 import com.elyedali.debttracker.ui.AppViewModel
 import com.elyedali.debttracker.ui.LockScreen
@@ -33,6 +34,7 @@ class MainActivity : FragmentActivity() {
                 }
             }
         }
+        if (!vm.isPremium.value) AdsManager.gatherConsentAndStart(this)
     }
 
     override fun onStart() {

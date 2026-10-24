@@ -8,6 +8,14 @@ plugins {
 
 val keystorePath: String? = System.getenv("SIGNING_KEYSTORE_PATH")
 
+// AdMob IDs. Google's TEST IDs are used until the real ones from the AdMob account are put here.
+val testAdmobAppId = "ca-app-pub-3940256099942544~3347511713"
+val testBanner = "ca-app-pub-3940256099942544/9214589741"
+val testInterstitial = "ca-app-pub-3940256099942544/1033173712"
+val realAdmobAppId = testAdmobAppId
+val realBanner = testBanner
+val realInterstitial = testInterstitial
+
 android {
     namespace = "com.elyedali.debttracker"
     compileSdk = 36
@@ -18,6 +26,10 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0.0"
+
+        manifestPlaceholders["admobAppId"] = realAdmobAppId
+        buildConfigField("String", "AD_UNIT_BANNER", "\"$realBanner\"")
+        buildConfigField("String", "AD_UNIT_INTERSTITIAL", "\"$realInterstitial\"")
     }
 
     signingConfigs {
@@ -32,6 +44,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            // Test builds always show test ads (never click real ads on your own phone).
+            manifestPlaceholders["admobAppId"] = testAdmobAppId
+            buildConfigField("String", "AD_UNIT_BANNER", "\"$testBanner\"")
+            buildConfigField("String", "AD_UNIT_INTERSTITIAL", "\"$testInterstitial\"")
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
@@ -84,4 +102,6 @@ dependencies {
     implementation("androidx.work:work-runtime-ktx:2.10.1")
     implementation("androidx.biometric:biometric:1.1.0")
     implementation("com.android.billingclient:billing:8.0.0")
+    implementation("com.google.android.gms:play-services-ads:24.3.0")
+    implementation("com.google.android.ump:user-messaging-platform:3.2.0")
 }

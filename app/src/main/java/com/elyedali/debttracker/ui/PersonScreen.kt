@@ -63,11 +63,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.elyedali.debttracker.ads.AdBanner
+import com.elyedali.debttracker.ads.AdsManager
 import com.elyedali.debttracker.data.Entry
 import com.elyedali.debttracker.ui.theme.GetColor
 import com.elyedali.debttracker.ui.theme.GiveColor
 import com.elyedali.debttracker.util.Money
 import com.elyedali.debttracker.util.Share
+import com.elyedali.debttracker.util.findActivity
 
 private data class EntryEditor(val gave: Boolean, val entry: Entry?)
 
@@ -147,8 +150,9 @@ fun PersonScreen(vm: AppViewModel, personId: String) {
         },
         bottomBar = {
             Surface(tonalElevation = 3.dp) {
+              Column(Modifier.navigationBarsPadding()) {
                 Row(
-                    modifier = Modifier.fillMaxWidth().navigationBarsPadding().padding(16.dp),
+                    modifier = Modifier.fillMaxWidth().padding(16.dp),
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
                     Button(
@@ -162,6 +166,8 @@ fun PersonScreen(vm: AppViewModel, personId: String) {
                         colors = ButtonDefaults.buttonColors(containerColor = GetColor, contentColor = Color.White),
                     ) { Text("YOU GOT", fontWeight = FontWeight.Bold) }
                 }
+                AdBanner(premium)
+              }
             }
         },
     ) { padding ->
@@ -217,7 +223,11 @@ fun PersonScreen(vm: AppViewModel, personId: String) {
                 } else {
                     vm.updateEntry(old.copy(amountCents = amount, note = note, date = date, dueDate = due))
                 }
-                if (due != null) askNotificationPermission()
+                if (due != null) {
+                    askNotificationPermission()
+                } else {
+                    context.findActivity()?.let { AdsManager.onEntrySaved(it, premium) }
+                }
                 editor = null
             },
             onDelete = ed.entry?.let { e -> { vm.deleteEntry(e.id); editor = null } },
