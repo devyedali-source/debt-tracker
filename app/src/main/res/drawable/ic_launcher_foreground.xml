@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Ledger book -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M40,32 h28 a4,4 0 0 1 4,4 v36 a4,4 0 0 1 -4,4 h-28 a4,4 0 0 1 -4,-4 v-36 a4,4 0 0 1 4,-4 z" />
+    <!-- Spine -->
+    <path
+        android:fillColor="#C8F0D4"
+        android:pathData="M36,36 a4,4 0 0 1 4,-4 h3 v44 h-3 a4,4 0 0 1 -4,-4 z" />
+    <!-- Lines -->
+    <path
+        android:fillColor="#146C43"
+        android:pathData="M49,42 h17 v3 h-17 z M49,50 h17 v3 h-17 z M49,58 h11 v3 h-11 z" />
+    <!-- Coin -->
+    <path
+        android:fillColor="#F4B400"
+        android:pathData="M70,66 m-9,0 a9,9 0 1 0 18,0 a9,9 0 1 0 -18,0" />
+    <path
+        android:fillColor="#146C43"
+        android:pathData="M68.6,60 h2.8 v2 h2.6 v2.4 h-5.4 v1.2 h3.2 a2.2,2.2 0 0 1 2.2,2.2 v1.6 a2.2,2.2 0 0 1 -2.2,2.2 h-0.4 v2 h-2.8 v-2 h-2.6 v-2.4 h5.4 v-1.2 h-3.2 a2.2,2.2 0 0 1 -2.2,-2.2 v-1.6 a2.2,2.2 0 0 1 2.2,-2.2 h0.4 z" />
+</vector>
