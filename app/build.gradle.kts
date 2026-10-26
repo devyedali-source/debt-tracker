@@ -14,7 +14,7 @@ val testBanner = "ca-app-pub-3940256099942544/9214589741"
 val testInterstitial = "ca-app-pub-3940256099942544/1033173712"
 val realAdmobAppId = "ca-app-pub-4858639248453099~5742799655"
 val realBanner = "ca-app-pub-4858639248453099/2376727720"
-val realInterstitial = testInterstitial
+val realInterstitial = "ca-app-pub-4858639248453099/1895266010"
 
 android {
     namespace = "com.elyedali.debttracker"
